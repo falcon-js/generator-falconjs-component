@@ -1,0 +1,27 @@
+{
+  "name": "falconjs-component-generator",
+  "version": "0.0.1",
+  "description": "Component Generator for FalconJS.io Framework",
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "start": "parcel ./demo/index.html --out-dir=testbuild --port=8000 --open ",
+    "build": "rm -rf dist &&  microbundle"
+  },
+  "keywords": [
+    "generator,  falconjs.io, falconjs, falconjs-component, falconjs component, component"
+  ],
+  "author": "John Martin R. Disuanco",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmdisuanco/falconjs-component-generator"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@falconjs.io/falcon": "^0.6.0"
+  },
+  "devDependencies": {
+    "@falconjs.io/falcon": "^0.6.0",
+    "microbundle": "^0.9.0"
+  }
+}

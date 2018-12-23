@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "jm",
+      "authorEmail": "jm@falconjs.io",
+      "authorUrl": "https://jm.disuan.co"
+    }
+  }
+}

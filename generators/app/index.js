@@ -4,7 +4,7 @@ const c = require('8colors')
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(c.by('FalconJS Component Generator').end())
+    this.log(c.by('FalconJS Component Generator ').bg('1.0.4').end())
     const prompts = [
       {
         type: 'input',
@@ -78,8 +78,16 @@ module.exports = class extends Generator {
       }
     )
     this.fs.copy(
-      this.templatePath('./dots/.'),
-      this.destinationPath('.')
+      this.templatePath('./dots/.babelrc'),
+      this.destinationPath('./.babelrc')
+    )
+    this.fs.copy(
+      this.templatePath('./dots/.npmignore'),
+      this.destinationPath('./.npmignore')
+    )
+    this.fs.copy(
+      this.templatePath('./dots/.gitignore'),
+      this.destinationPath('./.gitignore')
     )
   }
 

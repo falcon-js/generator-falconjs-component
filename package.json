@@ -1,5 +1,5 @@
 {
-  "name": "generator-falconjs-component",
+  "name": "@falconjs.io/generator-falconjs-component",
   "version": "1.0.0",
   "description": "FalconJS component Generator",
   "homepage": "https://falconjs.io",

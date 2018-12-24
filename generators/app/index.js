@@ -1,15 +1,10 @@
 'use strict'
 const Generator = require('yeoman-generator')
 const c = require('8colors')
-//const yosay = require('yosay')
 
 module.exports = class extends Generator {
   prompting() {
-    // Have Yeoman greet the user.
-    // this.log(
-    //   yosay(`${chalk.red('generator-falconjs-component')} generator!`)
-    // );
-    this.log(c.by('FalconJS Component Generator'+ this.config.get('authorName')).end())
+    this.log(c.by('FalconJS Component Generator').end())
     const prompts = [
       {
         type: 'input',

@@ -77,6 +77,10 @@ module.exports = class extends Generator {
         year: new Date().getFullYear()
       }
     )
+    this.fs.copy(
+      this.templatePath('./dots/.'),
+      this.destinationPath('.')
+    )
   }
 
   install() {

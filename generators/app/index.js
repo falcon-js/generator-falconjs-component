@@ -1,40 +1,93 @@
 'use strict'
 const Generator = require('yeoman-generator')
-const chalk = require('chalk')
-const yosay = require('yosay')
+const c = require('8colors')
+//const yosay = require('yosay')
 
 module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
-    this.log(
-      yosay(`${chalk.red('generator-falconjs-component')} generator!`)
-    );
-
+    // this.log(
+    //   yosay(`${chalk.red('generator-falconjs-component')} generator!`)
+    // );
+    this.log(c.by('FalconJS Component Generator'+ this.config.get('authorName')).end())
     const prompts = [
       {
-        type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
-        default: true
+        type: 'input',
+        name: 'name',
+        message: 'Name your FalconJS component',
+        default: this.appname
+      },
+      {
+        type: 'input',
+        name: 'version',
+        message: 'Version',
+        default: '1.0.0'
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Description of your Component',
+        default: ''
+      },
+      {
+        type: 'input',
+        name: 'keywords',
+        message: 'Keywords',
+        default: 'falconjs-component, '
+      },
+      {
+        type: 'input',
+        name: 'authorName',
+        message: 'Author',
+        default: this.config.get('authorName')
+      },
+      {
+        type: 'input',
+        name: 'authorEmail',
+        message: 'Author\'s email',
+        default: this.config.get('authorEmail')
+
+      },
+      {
+        type: 'input',
+        name: 'authorUrl',
+        message: 'Author\s URL',
+        default: this.config.get('authorUrl')
       }
-    ];
+    ]
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
-      this.props = props;
-    });
+      this.props = props
+    })
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath('./'),
+    this.config.set({
+      authorName: this.props.authorName,
+      authorEmail: this.props.authorEmail,
+      authorUrl: this.props.authorUrl
+    })
+    this.config.save()
+    this.fs.copyTpl(
+      this.templatePath('./**/*'),
       this.destinationPath('.'),
-      this.templatePath('./src'),
-      this.destinationPath('./src')
-    );
+      { name: this.props.name,
+        version: this.props.version,
+        description: this.props.description,
+        keywords: this.props.keywords,
+        author: this.props.authorName,
+        email: this.props.authorEmail,
+        url: this.props.authorUrl,
+        year: new Date().getFullYear()
+      }
+    )
   }
 
   install() {
-    this.installDependencies();
+    this.installDependencies({
+      bower: false,
+      npm: true
+    })
   }
-};
+}
